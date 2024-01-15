@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "sort.h"
 /**
  * selection_sort - sorting algorithm
  * @array:array
