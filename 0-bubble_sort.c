@@ -5,7 +5,7 @@
  * bubble_sort - sorting algorithm
  * @array: array
  * @size: size
- * Return: nothing 
+ * Return: nothing
  */
 void bubble_sort(int *array, size_t size)
 {
