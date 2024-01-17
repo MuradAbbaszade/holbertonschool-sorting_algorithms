@@ -11,18 +11,16 @@ void selection_sort(int *array, size_t size)
 {
 size_t j = 0;
 size_t i = 0;
-int min;
 int min_index;
 int temp = 0;
 
 for (i = 0 ; i < size - 1 ; i++)
 {
-min = array[i];
+min_index = i;
 for (j = i ; j < size ; j++)
 {
-if (array[j] < min)
+if (array[j] < array[min_index])
 {
-min = array[j];
 min_index = j;
 }
 }
