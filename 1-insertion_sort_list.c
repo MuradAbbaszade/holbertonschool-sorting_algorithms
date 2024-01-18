@@ -1,52 +1,53 @@
 #include "sort.h"
 
 /**
- * insertion_sort_list - sorts in ascending order
- * @list: The doubly linked list to sort
- *
- * Return: Nothing!
- */
+  * insertion_sort_list - Sorts an doubly linked list
+  * of integers in ascending order using
+  * the Insertion sort algorithm.
+  * @list: The doubly linked list to sort
+  *
+  * Return: Nothing!
+  */
 void insertion_sort_list(listint_t **list)
 {
-    bool swapOc = false;
-    listint_t *current = NULL, *temp = NULL, *previous = NULL;
+	bool flag = false;
+	listint_t *tmp = NULL, *aux = NULL;
 
-    if (!list || !(*list) || !(*list)->next)
-        return;
+	if (!list || !(*list) || !(*list)->next)
+		return;
 
-    current = *list;
-    while (current->next)
-    {
-        if (current->n > current->next->n)
-        {
-            current->next->prev = previous;
-            if (current->next->prev)
-                previous->next = current->next;
-            else
-                *list = current->next;
+	tmp = *list;
+	while (tmp->next)
+	{
+		if (tmp->n > tmp->next->n)
+		{
+			tmp->next->prev = tmp->prev;
+			if (tmp->next->prev)
+				tmp->prev->next = tmp->next;
+			else
+				*list = tmp->next;
 
-            current->prev = current->next;
-            current->next = current->next->next;
-            current->prev->next = current;
-            if (current->next)
-                current->next->prev = current;
+			tmp->prev = tmp->next;
+			tmp->next = tmp->next->next;
+			tmp->prev->next = tmp;
+			if (tmp->next)
+				tmp->next->prev = tmp;
 
-            current = current->prev;
-            print_list(*list);
+			tmp = tmp->prev;
+			print_list(*list);
 
-            if (current->prev && current->prev->n > current->n)
-            {
-                if (!swapOc)
-                    temp = current->next;
-                swapOc = true;
-                current = current->prev;
-                continue;
-            }
-        }
-        if (!swapOc)
-            current = current->next;
-        else
-            current = temp, swapOc = false;
-    }
+			if (tmp->prev && tmp->prev->n > tmp->n)
+			{
+				if (!flag)
+					aux = tmp->next;
+				flag = true;
+				tmp = tmp->prev;
+				continue;
+			}
+		}
+		if (!flag)
+			tmp = tmp->next;
+		else
+			tmp = aux, flag = false;
+	}
 }
-
